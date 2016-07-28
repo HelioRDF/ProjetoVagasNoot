@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de Usuários</title>
+	<p:graphicImage value="/primefaces1.png" width="345" height="100"/>
+</h:head>
+
+<h:body>
+
+
+
+		<h:inputHidden value="#{usuarioBean.usuarioEntity.codigo}" />
+		<h:inputHidden value="#{usuarioBean.usuarioEntity.dataCadastro}" />
+
+
+	<h:form id="cadastro">
+
+
+		<p:messages autoUpdate="true" redisplay="true" />
+		
+		<p:panelGrid columns="2" style="margin-top:35px">
+
+			<f:facet name="header">
+				<h:outputLabel value="Preencha seus Dados !!!"
+					style="margin-top:20px" />
+			</f:facet>
+
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" label="Nome Completo"
+				value="#{usuarioBean.usuarioEntity.nome}" size="30" maxlength="40"
+				required="true" requiredMessage="Digite seu nome completo">
+				<f:validateLength minimum="10" maximum="40" />
+			</p:inputText>
+
+			<p:outputLabel value="Data Nascimento" for="data" />
+			<p:inputText id="data" label="Data Nascimento"
+				value="#{usuarioBean.usuarioEntity.dataNascimento}" size="15"
+				maxlength="10" required="true"
+				requiredMessage="Digite sua data de nascimento.">
+
+			</p:inputText>
+			<p:outputLabel value="CPF" for="cpf" />
+			<p:inputText required="true"
+				requiredMessage="Digite seu CPF corretamente." id="cpf"
+				label="Celular" value="#{usuarioBean.usuarioEntity.cpf}" size="20">
+				<f:validateLength minimum="10" />
+			</p:inputText>
+
+			<p:outputLabel value="RG" for="rg" />
+			<p:inputText required="true"
+				requiredMessage="Digite seu RG corretamente." id="rg" label="rg"
+				value="#{usuarioBean.usuarioEntity.rg}" size="15">
+				<f:validateLength minimum="6" />
+			</p:inputText>
+
+			<p:outputLabel value="e-Mail" for="email" />
+			<h:panelGroup>
+				<p:inputText id="email" label="E-Mail"
+					requiredMessage="Digite um e-mail valido"
+					value="#{usuarioBean.usuarioEntity.email}" size="50" maxlength="50"
+					required="true" validatorMessage="e-mail inválido">
+					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+				</p:inputText>
+				<p:message for="email" />
+			</h:panelGroup>
+
+
+
+
+			<p:outputLabel value="Estado Civil" for="estadocivil" />
+			<p:selectOneButton id="estadocivil"
+				value="#{usuarioBean.usuarioEntity.estadoCivil}">
+				<f:selectItem itemValue="Solteiro" itemLabel="Solteiro" />
+				<f:selectItem itemValue="Casado" itemLabel="Casado" />
+			</p:selectOneButton>
+
+			<p:outputLabel value="Sexo" for="sexo" />
+			<p:selectOneMenu id="sexo" value="#{usuarioBean.usuarioEntity.sexo}">
+				<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+				<f:selectItem itemValue="Feminino" itemLabel="Feminino" />
+			</p:selectOneMenu>
+
+
+
+
+			<p:outputLabel value="Login" for="login" />
+			<p:inputText id="login" label="Login"
+				requiredMessage="Digite um login valido"
+				value="#{usuarioBean.usuarioEntity.login}" size="15" maxlength="25"
+				required="true"
+				validatorMessage="Login deve ter no mínimo 5 e no máximo 15 caracteres e só pode ter os símbolos '.' e '_'.">
+				<f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5,15}" />
+			</p:inputText>
+
+
+
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password id="senha" label="Senha"
+				value="#{usuarioBean.usuarioEntity.senha}" size="10" maxlength="15"
+				required="true" requiredMessage="Digite uma senha?" redisplay="true" />
+
+
+
+			<p:outputLabel value="Confirmar Senha" for="confirmarsenha" />
+			<p:password id="confirmarsenha" label="Confirmar Senha"
+				value="#{usuarioBean.confirmarSenha}" size="10" maxlength="15"
+				required="true" requiredMessage="Confirme a senha" redisplay="true" />
+
+
+
+
+
+
+			<p:outputLabel></p:outputLabel>
+			<p:commandButton icon="ui-icon-disk"
+			
+				action="#{usuarioBean.salvar}" value="Salvar" />
+
+
+
+		</p:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
