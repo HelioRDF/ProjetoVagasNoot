@@ -2,39 +2,55 @@ package com.mycompany.usuarios;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.mycompany.util.HibernateUtil;
 
 public class UsuarioDAOHibernate implements UsuarioDAO {
 
-    private  Session sessao; 
+	public void salvar(UsuarioEntity contato) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		Transaction transacao = null;
 
-    public void setSession(Session sessao) {
-        this.sessao = sessao;
-    }
+		try {
+			transacao = sessao.beginTransaction();
+			sessao.save(contato);
+			transacao.commit(); // Confirma transa.
 
-    public void salvar(UsuarioEntity contato) {
-        sessao.save(contato);
-    }
+		} catch (RuntimeException ex) {
 
-    public void atualizar(UsuarioEntity contato) {
-        sessao.update(contato);
-    }
+			if (transacao != null) {
+				transacao.rollback(); // Desfaz a transa��o caso entre no catch
+			}
+			throw ex;
 
-    public void excluir(UsuarioEntity contato) {
-        sessao.delete(contato);
-    }
+		} finally {
+			sessao.close();
+		}
+	}
 
-    @SuppressWarnings("unchecked")
-    public List<UsuarioEntity> listar() {
-        Query consulta = sessao.createQuery("from UsuarioEntity");
-        return consulta.list();
-    }
+	@Override
+	public void atualizar(UsuarioEntity contato) {
+		// TODO Auto-generated method stub
 
-    public UsuarioEntity buscaUsuario(int codigo) {
-        Query consulta = sessao.createQuery("from UsuarioEntity where codigo = :parametro");
-        consulta.setInteger("parametro", codigo);
-        return (UsuarioEntity) consulta.uniqueResult();
-    }
+	}
+
+	@Override
+	public void excluir(UsuarioEntity contato) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<UsuarioEntity> listar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UsuarioEntity buscaUsuario(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

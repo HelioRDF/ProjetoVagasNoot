@@ -13,7 +13,7 @@ import java.util.List;
  * @author Helio Franca
  */
 public class UsuarioRN {
-    private UsuarioDAO usuarioDAO;
+    private UsuarioDAOHibernate usuarioDAO;
 
     public UsuarioRN() {
       //  this.usuarioDAO = DAOFactory.criarUsuarioDAO();
