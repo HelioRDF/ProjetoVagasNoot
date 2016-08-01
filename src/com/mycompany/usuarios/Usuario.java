@@ -15,23 +15,18 @@ import javax.persistence.Temporal;
 
 import org.hibernate.annotations.NaturalId;
 
-/* Essa Classe contempla as informações do usuário.
- * Usuários ( Codigo, NOME, LOGIN, DATANASC, ESTADOCIVIL, RG, CPF, SEXO, SENHA);
- */
 @Entity
-@Table(name = "usuarioEntity")
-@NamedQueries({ @NamedQuery(name = "UsuarioEntity.listar", query = "SELECT usuarioEntity FROM	UsuarioEntity usuarioEntity"),
-		@NamedQuery(name = "UsuarioEntity.buscarPorCodigo", query = "SELECT usuarioEntity FROM UsuarioEntity usuarioEntity WHERE usuarioEntity.codigo = :codigo") })
-public class UsuarioEntity implements Serializable {
+@Table
+@NamedQueries({ 
+	@NamedQuery(name = "Usuario.listar", query = "SELECT usuario FROM	Usuario usuario"),
+	@NamedQuery(name = "Usuario.buscarPorCodigo", query = "SELECT usuario FROM Usuario usuario WHERE usuario.codigo = :codigo")})
+public class Usuario implements Serializable{
 
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = 7825954033523341680L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,22 +35,26 @@ public class UsuarioEntity implements Serializable {
 
 	@Column(name = "fab_descricao", length = 50, nullable = false)
 	private String descricao; // fab_descricao
+	
+	
+    private String nome;
 
-	private String nome;
+    @NaturalId
+    private String login;
 
-	@NaturalId
-	private String login;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataCadastro;
+    
+    private String dataNascimento;
+    private String estadoCivil;
+    private String rg;
+    private String cpf;
+    private String sexo;
+    private String senha;
+    private String email;
 
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date dataCadastro;
-
-	private String dataNascimento;
-	private String estadoCivil;
-	private String rg;
-	private String cpf;
-	private String sexo;
-	private String senha;
-	private String email;
+	
+	
 
 	public String getNome() {
 		return nome;
@@ -180,7 +179,7 @@ public class UsuarioEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioEntity other = (UsuarioEntity) obj;
+		Usuario other = (Usuario) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -243,5 +242,9 @@ public class UsuarioEntity implements Serializable {
 			return false;
 		return true;
 	}
-
+	
+	
+	
+	
+	
 }
