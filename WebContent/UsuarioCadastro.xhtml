@@ -3,9 +3,10 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	
 	<title>Cadastro de Usuários</title>
 	<p:graphicImage value="/imagens/primefaces1.png" width="345"
 		height="100" />
@@ -52,7 +53,7 @@
 
 		</p:panelGrid>
 
-		<p:panelGrid columns="2" style="margin-top:20px">
+		<p:panelGrid columns="2" style="margin-top:20px; margin-bottom:20px">
 
 			<f:facet name="header">
 				<p:outputLabel value="Informações do usuário"
@@ -107,6 +108,8 @@
 		<p:outputLabel></p:outputLabel>
 		<p:commandButton icon="ui-icon-disk"
 			actionListener="#{usuarioBean.salvar}" value="Salvar" />
+			
+			
 
 	</h:form>
 </h:body>
