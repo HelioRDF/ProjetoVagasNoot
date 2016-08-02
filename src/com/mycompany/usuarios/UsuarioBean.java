@@ -37,8 +37,6 @@ public class UsuarioBean {
 		if (!senha.equals(this.confirmarSenha)) {
 			FacesUtil.adicionarMsgErro("Confirmação de senha incorreta");
 			// return null;
-		} else {
-			FacesUtil.adicionarMsgInfo(usuarioEntity.toString());
 		}
 
 		try {
@@ -46,13 +44,12 @@ public class UsuarioBean {
 
 			final DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 			final Calendar cal = Calendar.getInstance();
-			String  dataFormatada =""+ df.format(cal.getTime());
-			
-			
+			String dataFormatada = "" + df.format(cal.getTime());
+
 			usuarioEntity.setDataCadastro(dataFormatada);
 
 			user.salvar(this.usuarioEntity);
-			FacesUtil.adicionarMsgErro("Salvo com sucesso");
+			FacesUtil.adicionarMsgInfo("Salvo com sucesso:    " + usuarioEntity.toString());
 
 			// return "BemVindo";
 
