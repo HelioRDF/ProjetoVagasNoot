@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.usuarios;
 
 //import com.mycompany.util.DAOFactory;
@@ -16,8 +12,7 @@ public class UsuarioRN {
     private UsuarioDAOHibernate usuarioDAO;
 
     public UsuarioRN() {
-      //  this.usuarioDAO = DAOFactory.criarUsuarioDAO();
-        
+    	usuarioDAO = new UsuarioDAOHibernate();
     }
 
 
@@ -39,4 +34,6 @@ public class UsuarioRN {
 	public List<UsuarioEntity> listar() {
 		return this.usuarioDAO.listar();
 	}
+	
+	
 }

@@ -1,7 +1,7 @@
 package com.mycompany.usuarios;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
+
 
 import org.hibernate.annotations.NaturalId;
 
@@ -38,16 +38,12 @@ public class UsuarioEntity implements Serializable {
 	@Column
 	private Long codigo;
 
-	@Column(name = "fab_descricao", length = 50, nullable = false)
-	private String descricao; // fab_descricao
-
 	private String nome;
 
-	@NaturalId
-	private String login;
+	
 
-	@Temporal(javax.persistence.TemporalType.DATE)
-	private Date dataCadastro;
+	
+	private String dataCadastro;
 
 	private String dataNascimento;
 	private String estadoCivil;
@@ -55,6 +51,8 @@ public class UsuarioEntity implements Serializable {
 	private String cpf;
 	private String sexo;
 	private String senha;
+	
+	@NaturalId
 	private String email;
 
 	public String getNome() {
@@ -65,19 +63,14 @@ public class UsuarioEntity implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
-	}
+	
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
 
-	public Date getDataCadastro() {
+	public String getDataCadastro() {
 		return dataCadastro;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 
@@ -145,13 +138,7 @@ public class UsuarioEntity implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 
 	@Override
 	public int hashCode() {
@@ -161,10 +148,10 @@ public class UsuarioEntity implements Serializable {
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+	
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((estadoCivil == null) ? 0 : estadoCivil.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
@@ -201,11 +188,7 @@ public class UsuarioEntity implements Serializable {
 				return false;
 		} else if (!dataNascimento.equals(other.dataNascimento))
 			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
+	
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -216,11 +199,7 @@ public class UsuarioEntity implements Serializable {
 				return false;
 		} else if (!estadoCivil.equals(other.estadoCivil))
 			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
+		
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -243,5 +222,14 @@ public class UsuarioEntity implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "UsuarioEntity [codigo=" + codigo + ", nome=" + nome + ", dataCadastro=" + dataCadastro + ", dataNascimento=" + dataNascimento + ", estadoCivil="
+				+ estadoCivil + ", rg=" + rg + ", cpf=" + cpf + ", sexo=" + sexo + ", senha=" + senha + ", email="
+				+ email + "]";
+	}
+	
+	
 
 }

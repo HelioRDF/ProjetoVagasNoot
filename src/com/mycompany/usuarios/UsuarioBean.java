@@ -1,10 +1,17 @@
 package com.mycompany.usuarios;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import com.mycompany.usuarios.UsuarioRN;
+import com.mycompany.util.FacesUtil;
+
 import com.mycompany.usuarios.UsuarioEntity;;
 
 /**
@@ -12,56 +19,70 @@ import com.mycompany.usuarios.UsuarioEntity;;
  * @author Helio Franca
  */
 
+@SuppressWarnings("unused")
 @ManagedBean(name = "usuarioBean")
-@RequestScoped
+@ViewScoped
 public class UsuarioBean {
-	
 
-    private UsuarioEntity usuarioEntity = new UsuarioEntity();
-    private String confirmarSenha;
+	private UsuarioEntity usuarioEntity;
+	private String confirmarSenha;
 
-    
-    public String guardar(){
-    	return "x";
-    }
-		
-		public String salvar() {
-			FacesContext context = FacesContext.getCurrentInstance();
+	public String guardar() {
+		return "x";
+	}
 
-			String senha = this.usuarioEntity.getSenha();
-			if (!senha.equals(this.confirmarSenha)) {
-				FacesMessage facesMessage = new FacesMessage(
-						"A senha n�o foi confirmada corretamente");
-				context.addMessage(null, facesMessage);
-				return null;
-			}
+	public void salvar() {
 
-			
-			UsuarioRN usuarioRN = new UsuarioRN();
-			usuarioRN.salvar(this.usuarioEntity);
-
-			
-			
-			return "BemVindo";
+		String senha = this.usuarioEntity.getSenha();
+		if (!senha.equals(this.confirmarSenha)) {
+			FacesUtil.adicionarMsgErro("Confirmação de senha incorreta");
+			// return null;
+		} else {
+			FacesUtil.adicionarMsgInfo(usuarioEntity.toString());
 		}
-	
-    
 
-    public UsuarioEntity getUsuarioEntity() {
-        return usuarioEntity;
-    }
+		try {
+			UsuarioRN user = new UsuarioRN();
 
-    public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
-        this.usuarioEntity = usuarioEntity;
-    }
+			final DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+			final Calendar cal = Calendar.getInstance();
+			String  dataFormatada =""+ df.format(cal.getTime());
+			
+			
+			usuarioEntity.setDataCadastro(dataFormatada);
 
-    public String getConfirmarSenha() {
-        return confirmarSenha;
-    }
+			user.salvar(this.usuarioEntity);
+			FacesUtil.adicionarMsgErro("Salvo com sucesso");
 
-    public void setConfirmarSenha(String confirmarSenha) {
-        this.confirmarSenha = confirmarSenha;
-    }
-    
-    
+			// return "BemVindo";
+
+		} catch (Exception e) {
+			// e.printStackTrace(); //Debugar erros.
+			FacesUtil.adicionarMsgErro("Erro so tentar salvar Usuários: " + e.getMessage());
+
+		}
+
+	}
+
+	public UsuarioEntity getUsuarioEntity() {
+
+		if (usuarioEntity == null) {
+			usuarioEntity = new UsuarioEntity();
+		}
+
+		return usuarioEntity;
+	}
+
+	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
+		this.usuarioEntity = usuarioEntity;
+	}
+
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
+
 }
