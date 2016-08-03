@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,9 +27,24 @@ public class UsuarioBean {
 
 	private UsuarioEntity usuarioEntity;
 	private String confirmarSenha;
+	private List<UsuarioEntity> listUsuarios;
+
+	private List<UsuarioEntity> listUsuariosFiltrados;
+
+	//
+	// private List<Fabricante> listaFabricantes;
+	// private List<Fabricante> listaFabricantesFiltrados;
 
 	public String guardar() {
 		return "x";
+	}
+
+	public void novo() {
+		if (usuarioEntity.getNome() != "") {
+			usuarioEntity = new UsuarioEntity();
+		} else
+			FacesUtil.adicionarMsgErro("Preencha o campo descrição");
+
 	}
 
 	public void salvar() {
@@ -61,6 +77,18 @@ public class UsuarioBean {
 
 	}
 
+	public void carregar() {
+
+		try {
+
+			UsuarioDAOHibernate usuarioDAOHibernate = new UsuarioDAOHibernate();
+			listUsuarios = usuarioDAOHibernate.listar();
+
+		} catch (RuntimeException e) {
+			FacesUtil.adicionarMsgErro("Erro ao listar fabricantes");
+		}
+	}
+
 	public UsuarioEntity getUsuarioEntity() {
 
 		if (usuarioEntity == null) {
@@ -82,4 +110,22 @@ public class UsuarioBean {
 		this.confirmarSenha = confirmarSenha;
 	}
 
+	public List<UsuarioEntity> getListUsuarios() {
+		return listUsuarios;
+	}
+
+	public void setListUsuarios(List<UsuarioEntity> listUsuarios) {
+		this.listUsuarios = listUsuarios;
+	}
+
+	public List<UsuarioEntity> getListUsuariosFiltrados() {
+		return listUsuariosFiltrados;
+	}
+
+	public void setListUsuariosFiltrados(List<UsuarioEntity> listUsuariosFiltrados) {
+		this.listUsuariosFiltrados = listUsuariosFiltrados;
+	}
+
+	
+	
 }

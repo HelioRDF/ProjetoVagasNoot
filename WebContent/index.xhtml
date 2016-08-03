@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Pagina Principal</title>
+	<p:graphicImage value="/imagens/primefaces1.png" width="345"
+		height="100" />
+</h:head>
+
+
+<h:body>
+
+	<h:form>
+		<p:panelGrid columns="1">
+
+			<p:outputLabel>Sistema em Teste</p:outputLabel>
+			<p:button value="Gerenciar"
+				outcome="/pages/administrador/usuariosPesquisa.xhtml" />
+
+			<p:button value="Cadastrar"
+				outcome="/pages/publico/cadastroUser.xhtml" />
+
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>
