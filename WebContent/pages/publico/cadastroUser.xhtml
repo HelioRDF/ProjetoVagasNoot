@@ -74,14 +74,7 @@
 				<f:validateLength minimum="10" />
 			</p:inputText>
 
-			<p:outputLabel value="RG" for="rg" />
-			<p:inputText required="true"
-				requiredMessage="Digite seu RG corretamente." id="rg" label="rg"
-				value="#{usuarioBean.usuarioEntity.rg}" size="15">
-				<f:validateLength minimum="6" />
-			</p:inputText>
-
-
+		
 			<p:outputLabel value="Data Nascimento" for="data" />
 			<p:inputMask id="data" label="Data Nascimento"
 				value="#{usuarioBean.usuarioEntity.dataNascimento}"

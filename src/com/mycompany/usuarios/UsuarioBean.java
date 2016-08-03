@@ -3,17 +3,12 @@ package com.mycompany.usuarios;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import com.mycompany.usuarios.UsuarioRN;
-import com.mycompany.util.FacesUtil;
 
-import com.mycompany.usuarios.UsuarioEntity;;
+import com.mycompany.util.FacesUtil;;
 
 /**
  *

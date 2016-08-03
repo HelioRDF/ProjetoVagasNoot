@@ -1,7 +1,6 @@
-package com.mycompany.usuarios;
+package com.mycompany.empresas;
 
 import java.io.Serializable;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,17 +11,18 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 import org.hibernate.annotations.NaturalId;
 
 /* Essa Classe contempla as informações do usuário.
- * Usuários ( Codigo, NOME,DATANASC, ESTADOCIVIL, RG, CPF, SEXO, SENHA);
+ *Empresa ( Codigo, NOME, CNPJ, DataCadastro,Email,Senha SEGMENTO, TOTALFUNCIONARIOS);
+
  */
 @Entity
-@Table(name = "usuarioEntity")
-@NamedQueries({ @NamedQuery(name = "UsuarioEntity.listar", query = "SELECT usuarioEntity FROM	UsuarioEntity usuarioEntity"),
-		@NamedQuery(name = "UsuarioEntity.buscarPorCodigo", query = "SELECT usuarioEntity FROM UsuarioEntity usuarioEntity WHERE usuarioEntity.codigo = :codigo") })
-public class UsuarioEntity implements Serializable {
+@Table(name = "empresaEntity")
+@NamedQueries({
+		@NamedQuery(name = "EmpresaEntity.listar", query = "SELECT empresaEntity FROM	EmpresaEntity empresaEntity"),
+		@NamedQuery(name = "EmpresaEntity.listar", query = "SELECT empresaEntity FROM	EmpresaEntity empresaEntity WHERE empresaEntity.codigo = :codigo") })
+public class EmpresaEntity implements Serializable {
 
 	/**
 	 * 
@@ -39,119 +39,80 @@ public class UsuarioEntity implements Serializable {
 	private Long codigo;
 
 	private String nome;
-
-	
-
-	
+	private String cnpj;
 	private String dataCadastro;
-
-	private String dataNascimento;
-	private String estadoCivil;
-
-	private String cpf;
-	private String sexo;
-	private String senha;
 	
+	private String senha;
 	@NaturalId
 	private String email;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	private String segmento;
+	private int totalFuncionarios;
 	
-
-
-	public String getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(String dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public String getEstadoCivil() {
-		return estadoCivil;
-	}
-
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
-	}
-
-
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
-
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-
-
-
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCnpj() {
+		return cnpj;
+	}
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSegmento() {
+		return segmento;
+	}
+	public void setSegmento(String segmento) {
+		this.segmento = segmento;
+	}
+	public int getTotalFuncionarios() {
+		return totalFuncionarios;
+	}
+	public void setTotalFuncionarios(int totalFuncionarios) {
+		this.totalFuncionarios = totalFuncionarios;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
-		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
-	
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((estadoCivil == null) ? 0 : estadoCivil.hashCode());
-		
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((segmento == null) ? 0 : segmento.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
-		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
+		result = prime * result + totalFuncionarios;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -160,63 +121,51 @@ public class UsuarioEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioEntity other = (UsuarioEntity) obj;
+		EmpresaEntity other = (EmpresaEntity) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
 			return false;
 		if (dataCadastro == null) {
 			if (other.dataCadastro != null)
 				return false;
 		} else if (!dataCadastro.equals(other.dataCadastro))
 			return false;
-		if (dataNascimento == null) {
-			if (other.dataNascimento != null)
-				return false;
-		} else if (!dataNascimento.equals(other.dataNascimento))
-			return false;
-	
 		if (email == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (estadoCivil == null) {
-			if (other.estadoCivil != null)
-				return false;
-		} else if (!estadoCivil.equals(other.estadoCivil))
-			return false;
-		
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		
+		if (segmento == null) {
+			if (other.segmento != null)
+				return false;
+		} else if (!segmento.equals(other.segmento))
+			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
-		if (sexo == null) {
-			if (other.sexo != null)
-				return false;
-		} else if (!sexo.equals(other.sexo))
+		if (totalFuncionarios != other.totalFuncionarios)
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "UsuarioEntity [codigo=" + codigo + ", nome=" + nome + ", dataCadastro=" + dataCadastro + ", dataNascimento=" + dataNascimento + ", estadoCivil="
-				+ estadoCivil + ", cpf=" + cpf + ", sexo=" + sexo + ", senha=" + senha + ", email="
-				+ email + "]";
+		return "EmpresaEntity [codigo=" + codigo + ", nome=" + nome + ", cnpj=" + cnpj + ", dataCadastro="
+				+ dataCadastro + ", senha=" + senha + ", email=" + email + ", segmento=" + segmento
+				+ ", totalFuncionarios=" + totalFuncionarios + "]";
 	}
 	
 	

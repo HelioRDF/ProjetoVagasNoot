@@ -11,7 +11,7 @@
 
 <ui:composition template="/templates/modeloGeral.xhtml">
 	<ui:define name="metadata">
-		<f:metadata>
+			<f:metadata>
 			<f:event listener="#{usuarioBean.carregar}" type="preRenderView"></f:event>
 		</f:metadata>
 	</ui:define>
@@ -60,9 +60,7 @@
 					<h:outputText value="#{user.cpf}" />
 				</p:column>
 
-				<p:column headerText="RG" filterBy="#{user.rg}">
-					<h:outputText value="#{user.rg}" />
-				</p:column>
+				
 
 				<p:column headerText="Data de Nascimento">
 					<h:outputText value="#{user.dataNascimento}" />

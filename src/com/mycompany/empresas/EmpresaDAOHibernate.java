@@ -1,15 +1,14 @@
-package com.mycompany.usuarios;
+package com.mycompany.empresas;
 
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import com.mycompany.util.HibernateUtil;
-import com.mycompany.usuarios.UsuarioEntity;;
+import com.mycompany.util.HibernateUtil;;
 
-public class UsuarioDAOHibernate implements UsuarioDAO {
+public class EmpresaDAOHibernate implements EmpresaDAO {
 
-	public void salvar(UsuarioEntity contato) {
+	public void salvar(EmpresaEntity contato) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
 
@@ -31,7 +30,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	}
 	
 	//Classe Salvar Teste para Usuario
-	public void salvarUser(UsuarioEntity contato) {
+	public void salvarEmpresa(EmpresaEntity contato) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
 
@@ -54,14 +53,14 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	
 
 	@Override
-	public void atualizar(UsuarioEntity contato) {
+	public void atualizar(EmpresaEntity empresa) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
 
 		try {
 
 			transacao = sessao.beginTransaction();
-			sessao.update(contato);
+			sessao.update(empresa);
 
 			transacao.commit(); // Confirma transacao...
 
@@ -79,14 +78,14 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	}
 
 	@Override
-	public void excluir(UsuarioEntity contato) {
+	public void excluir(EmpresaEntity empresa) {
 
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction transacao = null;
 
 		try {
 			transacao = sessao.beginTransaction();
-			sessao.delete(contato);
+			sessao.delete(empresa);
 			transacao.commit(); // Confirma transa��o.
 
 		} catch (RuntimeException ex) {
@@ -104,13 +103,13 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UsuarioEntity> listar() {
+	public List<EmpresaEntity> listar() {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		List<UsuarioEntity> usuarioEntity = null;
+		List<EmpresaEntity> empresaEntity = null;
 
 		try {
 			Query consulta = sessao.getNamedQuery("UsuarioEntity.listar");
-			usuarioEntity = consulta.list();
+			empresaEntity = consulta.list();
 		} catch (RuntimeException ex) {
 
 			throw ex;
@@ -119,32 +118,33 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 			sessao.close();
 		}
 
-		return usuarioEntity;
+		return empresaEntity;
 
 	}
 
 	
 
 	@Override
-	public UsuarioEntity buscaUsuario(int codigo) {
+	public EmpresaEntity buscaUsuario(int codigo) {
 	
 			Session sessao = HibernateUtil.getSessionFactory().openSession();
-			UsuarioEntity usuarioEntity = null;
+			EmpresaEntity empresaEntity = null;
 
 			try {
-				Query consulta = sessao.getNamedQuery("UsuarioEntity.buscarPorCodigo");
+				Query consulta = sessao.getNamedQuery("EmpresaEntity.buscarPorCodigo");
 				consulta.setLong("codigo", codigo);
 
-				usuarioEntity = (UsuarioEntity) consulta.uniqueResult();
+				empresaEntity = (EmpresaEntity) consulta.uniqueResult();
 			} catch (RuntimeException ex) {
 				throw ex;
 			} finally {
 				sessao.close();
 			}
 
-			return usuarioEntity;
+			return empresaEntity;
 
 		}
+
 
 
 }
