@@ -46,10 +46,45 @@
 					<h:outputText value="#{user.codigo}" />
 				</p:column>
 
-				<p:column headerText="Nome" filterStyle="" filterBy="#{user.nome}"
+				<p:column headerText="Nome" filterBy="#{user.nome}"
 					sortBy="#{user.nome}">
 					<h:outputText value="#{user.nome}" />
 				</p:column>
+
+
+				<p:column headerText="E-mail">
+					<h:outputText value="#{user.email}" />
+				</p:column>
+
+				<p:column headerText="CPF" filterBy="#{user.cpf}">
+					<h:outputText value="#{user.cpf}" />
+				</p:column>
+
+				<p:column headerText="RG" filterBy="#{user.rg}">
+					<h:outputText value="#{user.rg}" />
+				</p:column>
+
+				<p:column headerText="Data de Nascimento">
+					<h:outputText value="#{user.dataNascimento}" />
+				</p:column>
+
+				<p:column headerText="Sexo" filterBy="#{user.sexo}">
+					<h:outputText value="#{user.sexo}" />
+				</p:column>
+
+
+				<p:column headerText="Estado Civil" filterBy="#{user.estadoCivil}">
+					<h:outputText value="#{user.estadoCivil}" />
+				</p:column>
+
+				<p:column headerText="Data de Cadastro">
+					<h:outputText value="#{user.dataCadastro}" />
+				</p:column>
+
+				<p:column headerText="Senha">
+					<h:outputText value="#{user.senha}" />
+				</p:column>
+
 
 				<p:column headerText="Opções">
 

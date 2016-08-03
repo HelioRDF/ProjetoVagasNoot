@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
 /* Essa Classe contempla as informações do usuário.
- * Usuários ( Codigo, NOME, LOGIN, DATANASC, ESTADOCIVIL, RG, CPF, SEXO, SENHA);
+ * Usuários ( Codigo, NOME,DATANASC, ESTADOCIVIL, RG, CPF, SEXO, SENHA);
  */
 @Entity
 @Table(name = "usuarioEntity")

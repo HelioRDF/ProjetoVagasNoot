@@ -20,7 +20,6 @@ import com.mycompany.usuarios.UsuarioEntity;;
  * @author Helio Franca
  */
 
-@SuppressWarnings("unused")
 @ManagedBean(name = "usuarioBean")
 @ViewScoped
 public class UsuarioBean {
@@ -53,27 +52,42 @@ public class UsuarioBean {
 		if (!senha.equals(this.confirmarSenha)) {
 			FacesUtil.adicionarMsgErro("Confirmação de senha incorreta");
 			// return null;
-		}
+		} else
 
-		try {
-			UsuarioRN user = new UsuarioRN();
+			try {
+				UsuarioRN user = new UsuarioRN();
 
-			final DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-			final Calendar cal = Calendar.getInstance();
-			String dataFormatada = "" + df.format(cal.getTime());
+				final DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				final Calendar cal = Calendar.getInstance();
+				String dataFormatada = "" + df.format(cal.getTime());
 
-			usuarioEntity.setDataCadastro(dataFormatada);
+				usuarioEntity.setDataCadastro(dataFormatada);
 
-			user.salvar(this.usuarioEntity);
-			FacesUtil.adicionarMsgInfo("Salvo com sucesso:    " + usuarioEntity.toString());
+				user.salvar(this.usuarioEntity);
+				FacesUtil.adicionarMsgInfo("Salvo com sucesso:    " + usuarioEntity.toString());
+				usuarioEntity = new UsuarioEntity();
 
-			// return "BemVindo";
+				// return "BemVindo";
 
-		} catch (Exception e) {
-			// e.printStackTrace(); //Debugar erros.
-			FacesUtil.adicionarMsgErro("Erro so tentar salvar Usuários: " + e.getMessage());
+			} catch (Exception e) {
+				// e.printStackTrace(); //Debugar erros.
+				
+				
+				String erro ="";
+				
+				if(e.getMessage()==erro){
+					erro="Usuário já existe.";
+				}
+				
+				FacesUtil.adicionarMsgErro(e.getMessage());
 
-		}
+				FacesUtil.adicionarMsgErro(e.getLocalizedMessage());
+
+				FacesUtil.adicionarMsgErro(e.getCause().getMessage());
+
+				
+
+			}
 
 	}
 
@@ -126,6 +140,4 @@ public class UsuarioBean {
 		this.listUsuariosFiltrados = listUsuariosFiltrados;
 	}
 
-	
-	
 }

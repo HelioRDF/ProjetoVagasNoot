@@ -5,8 +5,8 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
-	
+
+
 	<title>Cadastro de Usuários</title>
 	<p:graphicImage value="/imagens/primefaces1.png" width="345"
 		height="100" />
@@ -27,17 +27,17 @@
 			<f:facet name="header">
 				<p:outputLabel value="Dados de Login" style="margin-top:20px" />
 			</f:facet>
-			
+
 			<p:outputLabel value="E-Mail" for="email" />
 			<h:panelGroup>
-			
+
 				<p:inputText id="email" label="E-Mail"
 					requiredMessage="Digite um e-mail valido"
 					value="#{usuarioBean.usuarioEntity.email}" size="45" maxlength="50"
 					required="true" validatorMessage="e-mail inválido">
 					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
 				</p:inputText>
-				
+
 				<p:message for="email" />
 			</h:panelGroup>
 
@@ -105,11 +105,16 @@
 		</p:panelGrid>
 
 
-		<p:outputLabel></p:outputLabel>
-		<p:commandButton icon="ui-icon-disk"
-			actionListener="#{usuarioBean.salvar}" value="Salvar" />
+		<h:panelGrid columns="2">
+			<p:button icon="fa-home" outcome="/index.xhtml" value="Home" style="" />
 			
-			
+			<p:commandButton icon="ui-icon-disk"
+				actionListener="#{usuarioBean.salvar}" value="Salvar" />
+		</h:panelGrid>
+
+
+
+
 
 	</h:form>
 </h:body>
