@@ -1,7 +1,5 @@
 package com.mycompany.testes;
 
-import java.util.Date;
-
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -21,7 +19,6 @@ public class UsuarioDAOTest {
 		user1.setEstadoCivil("dsfsfsdfsd");
 		
 		user1.setNome("asdasd");
-		user1.setRg("34234234234");
 		user1.setSenha("123");
 		user1.setSexo("asdd");
 		

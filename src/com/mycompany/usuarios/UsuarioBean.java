@@ -22,7 +22,6 @@ public class UsuarioBean {
 	private UsuarioEntity usuarioEntity;
 	private String confirmarSenha;
 	private List<UsuarioEntity> listUsuarios;
-
 	private List<UsuarioEntity> listUsuariosFiltrados;
 
 	//

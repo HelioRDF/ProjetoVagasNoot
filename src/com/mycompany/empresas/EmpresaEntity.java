@@ -45,10 +45,7 @@ public class EmpresaEntity implements Serializable {
 	private String senha;
 	@NaturalId
 	private String email;
-	private String segmento;
-	private int totalFuncionarios;
-	
-	
+	private String razaoSocial;
 	
 	
 	public Long getCodigo() {
@@ -87,17 +84,11 @@ public class EmpresaEntity implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSegmento() {
-		return segmento;
+	public String getRazaoSocial() {
+		return razaoSocial;
 	}
-	public void setSegmento(String segmento) {
-		this.segmento = segmento;
-	}
-	public int getTotalFuncionarios() {
-		return totalFuncionarios;
-	}
-	public void setTotalFuncionarios(int totalFuncionarios) {
-		this.totalFuncionarios = totalFuncionarios;
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
 	}
 	@Override
 	public int hashCode() {
@@ -108,9 +99,8 @@ public class EmpresaEntity implements Serializable {
 		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((segmento == null) ? 0 : segmento.hashCode());
+		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
-		result = prime * result + totalFuncionarios;
 		return result;
 	}
 	@Override
@@ -147,27 +137,26 @@ public class EmpresaEntity implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (segmento == null) {
-			if (other.segmento != null)
+		if (razaoSocial == null) {
+			if (other.razaoSocial != null)
 				return false;
-		} else if (!segmento.equals(other.segmento))
+		} else if (!razaoSocial.equals(other.razaoSocial))
 			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
-		if (totalFuncionarios != other.totalFuncionarios)
-			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "EmpresaEntity [codigo=" + codigo + ", nome=" + nome + ", cnpj=" + cnpj + ", dataCadastro="
-				+ dataCadastro + ", senha=" + senha + ", email=" + email + ", segmento=" + segmento
-				+ ", totalFuncionarios=" + totalFuncionarios + "]";
+				+ dataCadastro + ", senha=" + senha + ", email=" + email + ", razaoSocial=" + razaoSocial + "]";
 	}
 	
+	
+		
 	
 
 }

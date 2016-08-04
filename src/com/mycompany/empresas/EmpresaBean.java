@@ -19,9 +19,7 @@ public class EmpresaBean {
 
 	private EmpresaEntity empresaEntity;
 	private String confirmarSenha;
-	@SuppressWarnings("unused")
 	private List<EmpresaEntity> listEmpresa;
-	@SuppressWarnings("unused")
 	private List<EmpresaEntity> listEmpresaFiltrados;
 
 	public String guardar() {
@@ -40,6 +38,7 @@ public class EmpresaBean {
 	public void salvar() {
 
 		String senha = this.empresaEntity.getSenha();
+		
 		if (!senha.equals(this.confirmarSenha)) {
 			FacesUtil.adicionarMsgErro("Confirmação de senha incorreta");
 			// return null;
@@ -85,6 +84,38 @@ public class EmpresaBean {
 		} catch (RuntimeException e) {
 			FacesUtil.adicionarMsgErro("Erro ao listar Empresas");
 		}
+	}
+
+	public EmpresaEntity getEmpresaEntity() {
+		return empresaEntity;
+	}
+
+	public void setEmpresaEntity(EmpresaEntity empresaEntity) {
+		this.empresaEntity = empresaEntity;
+	}
+
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
+
+	public List<EmpresaEntity> getListEmpresa() {
+		return listEmpresa;
+	}
+
+	public void setListEmpresa(List<EmpresaEntity> listEmpresa) {
+		this.listEmpresa = listEmpresa;
+	}
+
+	public List<EmpresaEntity> getListEmpresaFiltrados() {
+		return listEmpresaFiltrados;
+	}
+
+	public void setListEmpresaFiltrados(List<EmpresaEntity> listEmpresaFiltrados) {
+		this.listEmpresaFiltrados = listEmpresaFiltrados;
 	}
 
 }
