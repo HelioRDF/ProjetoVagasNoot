@@ -11,43 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
-
 import org.hibernate.annotations.NaturalId;
 
-/* Essa Classe contempla as informações do usuário.
- * Usuários ( Codigo, NOME,DATANASC, ESTADOCIVIL, RG, CPF, SEXO, SENHA);
- */
+
 @Entity
 @Table(name = "usuarioEntity")
 @NamedQueries({ @NamedQuery(name = "UsuarioEntity.listar", query = "SELECT usuarioEntity FROM	UsuarioEntity usuarioEntity"),
 		@NamedQuery(name = "UsuarioEntity.buscarPorCodigo", query = "SELECT usuarioEntity FROM UsuarioEntity usuarioEntity WHERE usuarioEntity.codigo = :codigo") })
 public class UsuarioEntity implements Serializable {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Long codigo;
-
 	private String nome;
-
-	
-
-	
 	private String dataCadastro;
-
 	private String dataNascimento;
 	private String estadoCivil;
-
 	private String cpf;
 	private String sexo;
 	private String senha;
@@ -63,10 +47,7 @@ public class UsuarioEntity implements Serializable {
 		this.nome = nome;
 	}
 
-	
-
-
-	public String getDataCadastro() {
+		public String getDataCadastro() {
 		return dataCadastro;
 	}
 

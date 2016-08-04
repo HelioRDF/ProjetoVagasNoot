@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de Usuários</title>
+	<p:graphicImage value="/imagens/primefaces1.png" width="345"
+		height="100" />
+</h:head>
+
+<body>
+
+
+	<h:inputHidden value="#{empresaBean.empresaObj.codigo}" />
+
+	<h:form id="cadastroEmpresas">
+
+
+		<p:messages autoUpdate="true" redisplay="true" id="mgs" />
+
+
+		<p:panelGrid columns="2" style="margin-top:20px">
+
+			<f:facet name="header">
+				<p:outputLabel value="Dados de Login" style="margin-top:20px" />
+			</f:facet>
+
+			<p:outputLabel value="E-Mail" for="email" />
+			<h:panelGroup>
+
+				<p:inputText id="email" label="E-Mail"
+					requiredMessage="Digite um e-mail valido"
+					value="#{empresaBean.empresaObj.email}" size="47" maxlength="50"
+					required="true" validatorMessage="e-mail inválido">
+					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+				</p:inputText>
+				<p:message for="email" />
+			</h:panelGroup>
+
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password id="senha" label="Senha" feedback="true"
+				value="#{empresaBean.empresaObj.senha}" size="15" maxlength="15"
+				required="true" requiredMessage="Digite uma senha." redisplay="true" />
+
+		</p:panelGrid>
+
+		<p:panelGrid columns="2" style="margin-top:20px; margin-bottom:20px">
+
+			<f:facet name="header">
+				<p:outputLabel value="Informações da empresa"
+					style="margin-top:20px" />
+			</f:facet>
+
+			<p:outputLabel value="Empresa" for="nomeEmpresa" />
+			<p:inputText id="nomeEmpresa" label="Nome da Empresa..."
+				value="#{empresaBean.empresaObj.nomeEmpresa}" size="45"
+				maxlength="55" required="true"
+				requiredMessage="Digite o nome da empresa">
+				<f:validateLength minimum="1" maximum="50" />
+			</p:inputText>
+
+		</p:panelGrid>
+
+
+
+		<!-- Boões de Controle da página -->
+
+		<h:panelGrid columns="2">
+			<p:button icon="fa-home" outcome="/index.xhtml" value="Home" style="" />
+			<p:commandButton icon="ui-icon-disk" value="Salvar" actionListener="#{empresaBean.salvar}"/>
+		</h:panelGrid>
+
+	</h:form>
+</body>
+</html>

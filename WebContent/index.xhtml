@@ -17,12 +17,23 @@
 	<h:form>
 		<p:panelGrid columns="1">
 
-			<p:outputLabel>Sistema em Teste</p:outputLabel>
-			<p:button value="   Gerenciar   "
-				outcome="/pages/administrador/usuariosPesquisa.xhtml" />
+			<p:outputLabel>Usuário </p:outputLabel>
 
-			<p:button  value="   Cadastrar   "
+			<p:button value="   Cadastrar  Usuários "
 				outcome="/pages/publico/cadastroUser.xhtml" />
+
+			<p:button value="   Gerenciar   Usuários"
+				outcome="/pages/administrador/usuarioPesquisa.xhtml" />
+
+
+
+			<p:outputLabel>Empresa </p:outputLabel>
+
+			<p:button value="   Cadastrar  Empresas "
+				outcome="/pages/publico/cadastroCompany.xhtml" />
+
+			<p:button value="   Gerenciar   Empresas"
+				outcome="/pages/administrador/empresaPesquisa.xhtml" />
 
 		</p:panelGrid>
 	</h:form>

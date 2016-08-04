@@ -3,10 +3,9 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-
 	<title>Cadastro de Usuários</title>
 	<p:graphicImage value="/imagens/primefaces1.png" width="345"
 		height="100" />
@@ -18,7 +17,7 @@
 	<h:inputHidden value="#{usuarioBean.usuarioEntity.codigo}" />
 	<h:inputHidden value="#{usuarioBean.usuarioEntity.dataCadastro}" />
 
-	<h:form id="cadastro">
+	<h:form id="cadastroUsuarios">
 
 		<p:messages autoUpdate="true" redisplay="true" id="mgs" />
 
@@ -74,7 +73,7 @@
 				<f:validateLength minimum="10" />
 			</p:inputText>
 
-		
+
 			<p:outputLabel value="Data Nascimento" for="data" />
 			<p:inputMask id="data" label="Data Nascimento"
 				value="#{usuarioBean.usuarioEntity.dataNascimento}"
@@ -97,17 +96,13 @@
 
 		</p:panelGrid>
 
-
+		<!-- Boões de Controle da página -->
 		<h:panelGrid columns="2">
 			<p:button icon="fa-home" outcome="/index.xhtml" value="Home" style="" />
-			
+
 			<p:commandButton icon="ui-icon-disk"
 				actionListener="#{usuarioBean.salvar}" value="Salvar" />
 		</h:panelGrid>
-
-
-
-
 
 	</h:form>
 </h:body>

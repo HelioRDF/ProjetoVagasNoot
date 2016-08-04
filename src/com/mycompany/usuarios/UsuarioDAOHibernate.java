@@ -29,29 +29,6 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 			sessao.close();
 		}
 	}
-	
-	//Classe Salvar Teste para Usuario
-	public void salvarUser(UsuarioEntity contato) {
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		Transaction transacao = null;
-
-		try {
-			transacao = sessao.beginTransaction();
-			sessao.save(contato);
-			transacao.commit(); // Confirma transa.
-
-		} catch (RuntimeException ex) {
-
-			if (transacao != null) {
-				transacao.rollback(); // Desfaz a transa��o caso entre no catch
-			}
-			throw ex;
-
-		} finally {
-			sessao.close();
-		}
-	}
-	
 
 	@Override
 	public void atualizar(UsuarioEntity contato) {
@@ -64,30 +41,6 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 			sessao.update(contato);
 
 			transacao.commit(); // Confirma transacao...
-
-		} catch (RuntimeException ex) {
-
-			if (transacao != null) {
-				transacao.rollback(); // Desfaz a transa��o caso entre no catch
-			}
-			throw ex;
-
-		} finally {
-			sessao.close();
-		}
-
-	}
-
-	@Override
-	public void excluir(UsuarioEntity contato) {
-
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		Transaction transacao = null;
-
-		try {
-			transacao = sessao.beginTransaction();
-			sessao.delete(contato);
-			transacao.commit(); // Confirma transa��o.
 
 		} catch (RuntimeException ex) {
 
@@ -123,28 +76,73 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 
 	}
 
-	
+	@Override
+	public void excluir(UsuarioEntity contato) {
+		//
+		// Session sessao = HibernateUtil.getSessionFactory().openSession();
+		// Transaction transacao = null;
+		//
+		// try {
+		// transacao = sessao.beginTransaction();
+		// sessao.delete(contato);
+		// transacao.commit(); // Confirma transa��o.
+		//
+		// } catch (RuntimeException ex) {
+		//
+		// if (transacao != null) {
+		// transacao.rollback(); // Desfaz a transa��o caso entre no catch
+		// }
+		// throw ex;
+		//
+		// } finally {
+		// sessao.close();
+		// }
+		//
+	}
 
 	@Override
 	public UsuarioEntity buscaUsuario(int codigo) {
-	
-			Session sessao = HibernateUtil.getSessionFactory().openSession();
-			UsuarioEntity usuarioEntity = null;
+		//
+		// Session sessao = HibernateUtil.getSessionFactory().openSession();
+		// UsuarioEntity usuarioEntity = null;
+		//
+		// try {
+		// Query consulta =
+		// sessao.getNamedQuery("UsuarioEntity.buscarPorCodigo");
+		// consulta.setLong("codigo", codigo);
+		//
+		// usuarioEntity = (UsuarioEntity) consulta.uniqueResult();
+		// } catch (RuntimeException ex) {
+		// throw ex;
+		// } finally {
+		// sessao.close();
+		// }
+		//
+		// return usuarioEntity;
+		return null;
+		//
+	}
 
-			try {
-				Query consulta = sessao.getNamedQuery("UsuarioEntity.buscarPorCodigo");
-				consulta.setLong("codigo", codigo);
-
-				usuarioEntity = (UsuarioEntity) consulta.uniqueResult();
-			} catch (RuntimeException ex) {
-				throw ex;
-			} finally {
-				sessao.close();
-			}
-
-			return usuarioEntity;
-
-		}
-
+	// Classe Salvar Teste para Usuario
+	// public void salvarUser(UsuarioEntity contato) {
+	// Session sessao = HibernateUtil.getSessionFactory().openSession();
+	// Transaction transacao = null;
+	//
+	// try {
+	// transacao = sessao.beginTransaction();
+	// sessao.save(contato);
+	// transacao.commit(); // Confirma transa.
+	//
+	// } catch (RuntimeException ex) {
+	//
+	// if (transacao != null) {
+	// transacao.rollback(); // Desfaz a transa��o caso entre no catch
+	// }
+	// throw ex;
+	//
+	// } finally {
+	// sessao.close();
+	// }
+	// }
 
 }

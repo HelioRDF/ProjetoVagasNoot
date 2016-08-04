@@ -16,16 +16,14 @@
 
 <h:body>
 
-
-
 	<p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="100" header="Gerencia do sistema"
+		<p:layoutUnit position="north" size="80" header="Gerencia do sistema"
 			resizable="true" closable="true" collapsible="true">
 			<h:outputText value="North unit content." />
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" size="100"
+		<p:layoutUnit position="south" size="70"
 			header="Densenvolvimento teste" resizable="true" closable="true"
 			collapsible="true">
 			<h:outputText value="South unit content." />
@@ -43,16 +41,15 @@
 
 					<p:submenu label="Cadastros">
 						<p:menuitem value="Usuários"
-							outcome="/pages/administrador/usuariosPesquisa.xhtml" />
+							outcome="/pages/administrador/usuarioPesquisa.xhtml" />
 
 						<p:menuitem value="Empresas"
-						outcome="/pages/administrador/empresasPesquisa.xhtml"  />
+							outcome="/pages/administrador/empresaPesquisa.xhtml" />
 
 						<p:menuitem value="Oportunidades" />
 
 					</p:submenu>
 					<p:submenu label="Livre"></p:submenu>
-
 
 				</p:panelMenu>
 			</h:form>

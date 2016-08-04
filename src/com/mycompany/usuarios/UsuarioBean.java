@@ -24,14 +24,6 @@ public class UsuarioBean {
 	private List<UsuarioEntity> listUsuarios;
 	private List<UsuarioEntity> listUsuariosFiltrados;
 
-	//
-	// private List<Fabricante> listaFabricantes;
-	// private List<Fabricante> listaFabricantesFiltrados;
-
-	public String guardar() {
-		return "x";
-	}
-
 	public void novo() {
 		if (usuarioEntity.getNome() != "") {
 			usuarioEntity = new UsuarioEntity();
@@ -64,22 +56,8 @@ public class UsuarioBean {
 				// return "BemVindo";
 
 			} catch (Exception e) {
-				// e.printStackTrace(); //Debugar erros.
-				
-				
-				String erro ="";
-				
-				if(e.getMessage()==erro){
-					erro="Usuário já existe.";
-				}
-				
+
 				FacesUtil.adicionarMsgErro(e.getMessage());
-
-				FacesUtil.adicionarMsgErro(e.getLocalizedMessage());
-
-				FacesUtil.adicionarMsgErro(e.getCause().getMessage());
-
-				
 
 			}
 
@@ -93,7 +71,7 @@ public class UsuarioBean {
 			listUsuarios = usuarioDAOHibernate.listar();
 
 		} catch (RuntimeException e) {
-			FacesUtil.adicionarMsgErro("Erro ao listar fabricantes");
+			FacesUtil.adicionarMsgErro("Erro ao listar Usuarios");
 		}
 	}
 
