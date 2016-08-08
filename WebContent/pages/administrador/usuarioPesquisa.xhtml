@@ -19,26 +19,24 @@
 	<ui:define name="conteudo">
 		<h:form>
 
-			<p:toolbar>
-				<f:facet name="left">
 
-					<h:outputText value="Usuarios" />
-				</f:facet>
-
-			</p:toolbar>
-
-
-
-			<p:dataTable emptyMessage="Nenhum registro encontrado"
+			<p:dataTable rowsPerPageTemplate="8,15,25" resizableColumns="true"
+				id="table" emptyMessage="Nenhum registro encontrado"
 				value="#{usuarioBean.listUsuarios}"
 				filteredValue="#{usuarioBean.listUsuariosFiltrados}" var="user"
 				rows="8" paginator="true">
+				<f:facet name="header">
+            Tabela de usuários
+        </f:facet>
 
 				<f:facet name="footer">
 					<p:commandButton style="margin-top:10px" value="Adicionar Usuarios"
 						action="/pages/publico/cadastroUser.xhtml?faces-redirect=true" />
 				</f:facet>
 
+				<p:column style="width:16px">
+					<p:rowToggler />
+				</p:column>
 
 				<p:column headerText="Código">
 					<h:outputText value="#{user.codigo}" />
@@ -50,11 +48,11 @@
 				</p:column>
 
 
-				<p:column headerText="E-mail">
+				<p:column headerText="E-mail" width="true">
 					<h:outputText value="#{user.email}" />
 				</p:column>
 
-				<p:column headerText="CPF" filterBy="#{user.cpf}">
+				<p:column headerText="CPF" filterBy="#{user.cpf}" width="true">
 					<h:outputText value="#{user.cpf}" />
 				</p:column>
 
@@ -85,6 +83,18 @@
 				<p:column headerText="Opções">
 
 				</p:column>
+
+				<!-- Informações após expandir linha -->
+				<p:rowExpansion>
+					<p:panelGrid columns="1" columnClasses="label,value"
+						style="width:size">
+
+						<h:outputText value="Codigo: #{user.codigo}" />
+						<h:outputText value="Nome" />
+						<h:outputText value="#{user.nome}" />
+					</p:panelGrid>
+				</p:rowExpansion>
+
 
 			</p:dataTable>
 

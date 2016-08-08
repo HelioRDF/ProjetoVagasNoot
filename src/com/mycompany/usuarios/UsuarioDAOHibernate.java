@@ -58,6 +58,7 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UsuarioEntity> listar() {
+		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		List<UsuarioEntity> usuarioEntity = null;
 

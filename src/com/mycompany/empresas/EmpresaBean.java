@@ -1,5 +1,8 @@
 package com.mycompany.empresas;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -14,26 +17,37 @@ public class EmpresaBean {
 	private EmpresaEntity empresaObj;
 	private List<EmpresaEntity> listEmpresas;
 	private List<EmpresaEntity> listEmpresasFiltrados;
-	
+	private String confirmarSenha;
 
 	public void salvar() {
 
-		try {
-			EmpresaRN company = new EmpresaRN();
+		String senha = empresaObj.getSenha();
 
-			company.salvar(this.empresaObj);
-			FacesUtil.adicionarMsgInfo("Salvo com sucesso:    " + empresaObj.toString());
-			empresaObj = new EmpresaEntity();
+		if (!senha.equals(this.confirmarSenha)) {
 
-		} catch (Exception e) {
-			FacesUtil.adicionarMsgErro("???"+ e.getStackTrace() );
-			
-		}
+			FacesUtil.adicionarMsgErro("Confirmação de senha incorreta");
+		} else
 
+			try {
+				EmpresaRN company = new EmpresaRN();
+
+				final DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				final Calendar cal = Calendar.getInstance();
+				String dataFormatada = "" + df.format(cal.getTime());
+				empresaObj.setDataCadastro(dataFormatada);
+
+				company.salvar(this.empresaObj);
+				FacesUtil.adicionarMsgInfo("Salvo com sucesso:    " + empresaObj.toString());
+				empresaObj = new EmpresaEntity();
+
+			} catch (Exception e) {
+				FacesUtil.adicionarMsgErro("???" + e.getStackTrace());
+			}
 	}
-	
+
 	public void carregar() {
 
+		System.out.println("Entrou no IF empresas");
 		try {
 
 			EmpresaDAOHibernate empresaDAOHibernate = new EmpresaDAOHibernate();
@@ -41,10 +55,9 @@ public class EmpresaBean {
 
 		} catch (RuntimeException e) {
 			FacesUtil.adicionarMsgErro("Erro ao listar Usuarios");
+
 		}
 	}
-	
-	
 
 	public EmpresaEntity getEmpresaObj() {
 		if (empresaObj == null) {
@@ -74,5 +87,12 @@ public class EmpresaBean {
 		this.listEmpresasFiltrados = listEmpresasFiltrados;
 	}
 
-	
+	public String getConfirmarSenha() {
+		return confirmarSenha;
+	}
+
+	public void setConfirmarSenha(String confirmarSenha) {
+		this.confirmarSenha = confirmarSenha;
+	}
+
 }

@@ -11,29 +11,33 @@
 <ui:composition template="/templates/modeloGeral.xhtml">
 	<ui:define name="metadata">
 		<f:metadata>
-			<f:event listener="#{empresaBean.carregar}"  type="preRenderView"></f:event>
+			<f:event listener="#{empresaBean.carregar}" type="preRenderView"></f:event>
 		</f:metadata>
 	</ui:define>
 
 	<ui:define name="conteudo">
 		<h:form>
 
-			<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Empresas" />
-				</f:facet>
-			</p:toolbar>
 
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado"
+
+			<p:dataTable rowsPerPageTemplate="8,15,25" resizableColumns="true"
+				emptyMessage="Nenhum registro encontrado"
 				value="#{empresaBean.listEmpresas}"
 				filteredValue="#{empresaBean.listEmpresasFiltrados}" var="company"
 				rows="8" paginator="true">
+				<f:facet name="header">
+            Tabela de empresas
+        </f:facet>
 
 				<f:facet name="footer">
 					<p:commandButton style="margin-top:10px" value="Adicionar Empresas"
 						action="/pages/publico/cadastroCompany.xhtml?faces-redirect=true" />
 				</f:facet>
+
+				<p:column style="width:16px">
+					<p:rowToggler />
+				</p:column>
 
 
 				<p:column headerText="Código">
@@ -50,11 +54,39 @@
 					<h:outputText value="#{company.email}" />
 				</p:column>
 
+				<p:column headerText="CNPJ">
+					<h:outputText value="#{company.cnpj}" />
+				</p:column>
+
+				<p:column headerText="Ramo">
+					<h:outputText value="#{company.ramoEmpresa}" />
+				</p:column>
+
 				<p:column headerText="Senha">
 					<h:outputText value="#{company.senha}" />
 				</p:column>
 
 
+				<!-- Informações após expandir linha -->
+				<p:rowExpansion>
+					<p:panelGrid columns="1" columnClasses="label,value"
+						style="width:size">
+						<h:outputText value="Codigo: #{company.codigo}" />
+						<h:outputText value="Data de cadastro: #{company.dataCadastro}" />
+					</p:panelGrid>
+
+					<p:separator />
+					<p:panelGrid columns="1">
+						<h:outputText value="Descrição da Empresa: " />
+						<h:inputTextarea readonly="true" rows="10" cols="90"
+							value="#{company.descricaoEmpresa}" />
+					</p:panelGrid>
+
+					<p:separator />
+
+
+
+				</p:rowExpansion>
 
 
 			</p:dataTable>

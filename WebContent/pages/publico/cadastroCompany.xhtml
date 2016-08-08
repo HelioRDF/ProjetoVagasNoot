@@ -14,9 +14,11 @@
 <body>
 
 
-	<h:inputHidden value="#{empresaBean.empresaObj.codigo}" />
+	<h:inputHidden value="#{empresaBean.empresaObj.codigo}" />	
+	<h:inputHidden value="#{empresaBean.empresaObj.dataCadastro}" />
 
-	<h:form id="cadastroEmpresas">
+
+	<h:form id="cadastroEmpresas" style="">
 
 
 		<p:messages autoUpdate="true" redisplay="true" id="mgs" />
@@ -33,17 +35,29 @@
 
 				<p:inputText id="email" label="E-Mail"
 					requiredMessage="Digite um e-mail valido"
-					value="#{empresaBean.empresaObj.email}" size="47" maxlength="50"
+					value="#{empresaBean.empresaObj.email}" size="45" maxlength="45"
 					required="true" validatorMessage="e-mail inválido">
 					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
 				</p:inputText>
 				<p:message for="email" />
 			</h:panelGroup>
 
+			<p:outputLabel value="CNPJ" for="cnpj" />
+			<p:inputText required="true"
+				requiredMessage="Digite o cnpj corretamente." id="cnpj" label="CNPJ"
+				value="#{empresaBean.empresaObj.cnpj}" size="20">
+				<f:validateLength minimum="10" />
+			</p:inputText>
+
 			<p:outputLabel value="Senha" for="senha" />
 			<p:password id="senha" label="Senha" feedback="true"
 				value="#{empresaBean.empresaObj.senha}" size="15" maxlength="15"
 				required="true" requiredMessage="Digite uma senha." redisplay="true" />
+				
+				<p:outputLabel value="Confirmar a Senha" for="confirmarsenha" />
+			<p:password id="confirmarsenha" label="Confirmar Senha"
+				value="#{empresaBean.confirmarSenha}" size="15" maxlength="15"
+				required="true" requiredMessage="Confirme a senha" redisplay="true" />
 
 		</p:panelGrid>
 
@@ -54,23 +68,35 @@
 					style="margin-top:20px" />
 			</f:facet>
 
-			<p:outputLabel value="Empresa" for="nomeEmpresa" />
+			<p:outputLabel value="Nome da Empresa" for="nomeEmpresa" />
 			<p:inputText id="nomeEmpresa" label="Nome da Empresa..."
 				value="#{empresaBean.empresaObj.nomeEmpresa}" size="45"
 				maxlength="55" required="true"
 				requiredMessage="Digite o nome da empresa">
 				<f:validateLength minimum="1" maximum="50" />
 			</p:inputText>
+			
+			
+			<p:outputLabel value="Ramo" for="ramo" />
+			<p:inputText id="ramo" size="30"
+				value="#{empresaBean.empresaObj.ramoEmpresa}">
+			</p:inputText>
+
+
+			<p:outputLabel value="Descrição" for="descricao" />
+			<p:inputTextarea id="descricao" autoResize="true" rows="6" cols="45"
+				value="#{empresaBean.empresaObj.descricaoEmpresa}">
+			</p:inputTextarea>
 
 		</p:panelGrid>
-
 
 
 		<!-- Boões de Controle da página -->
 
 		<h:panelGrid columns="2">
 			<p:button icon="fa-home" outcome="/index.xhtml" value="Home" style="" />
-			<p:commandButton icon="ui-icon-disk" value="Salvar" actionListener="#{empresaBean.salvar}"/>
+			<p:commandButton icon="ui-icon-disk" value="Salvar"
+				actionListener="#{empresaBean.salvar}" />
 		</h:panelGrid>
 
 	</h:form>

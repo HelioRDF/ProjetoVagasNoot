@@ -21,6 +21,9 @@
 
 		<p:messages autoUpdate="true" redisplay="true" id="mgs" />
 
+
+	<!-- Campos com as informaçãoes de Login do usuário -->
+
 		<p:panelGrid columns="2" style="margin-top:20px">
 
 			<f:facet name="header">
@@ -51,7 +54,10 @@
 				required="true" requiredMessage="Confirme a senha" redisplay="true" />
 
 		</p:panelGrid>
-
+		
+		
+			<!-- Campos com as informaçãoes complementares usuário -->
+		
 		<p:panelGrid columns="2" style="margin-top:20px; margin-bottom:20px">
 
 			<f:facet name="header">
@@ -84,14 +90,14 @@
 			<p:outputLabel value="Estado Civil:" for="estadocivil" />
 			<p:selectOneMenu id="estadocivil"
 				value="#{usuarioBean.usuarioEntity.estadoCivil}">
-				<f:selectItem itemValue="Solteiro" itemLabel="Solteiro" />
-				<f:selectItem itemValue="Casado" itemLabel="Casado" />
+				<f:selectItem itemValue="S" itemLabel="Solteiro" />
+				<f:selectItem itemValue="C" itemLabel="Casado" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Sexo:" for="sexo" />
 			<p:selectOneMenu id="sexo" value="#{usuarioBean.usuarioEntity.sexo}">
-				<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
-				<f:selectItem itemValue="Feminino" itemLabel="Feminino" />
+				<f:selectItem itemValue="H" itemLabel="Masculino" />
+				<f:selectItem itemValue="M" itemLabel="Feminino" />
 			</p:selectOneMenu>
 
 		</p:panelGrid>
@@ -103,7 +109,7 @@
 			<p:commandButton icon="ui-icon-disk"
 				actionListener="#{usuarioBean.salvar}" value="Salvar" />
 		</h:panelGrid>
-
+	
 	</h:form>
 </h:body>
 </html>

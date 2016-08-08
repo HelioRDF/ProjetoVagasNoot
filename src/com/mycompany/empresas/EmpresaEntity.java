@@ -14,22 +14,30 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-@Table (name = "Tb_empresaEntity")
+@Table(name = "Tb_empresaEntity")
 @NamedQueries({ @NamedQuery(name = "EmpresaEntity.listar", query = "SELECT empresaObj FROM	EmpresaEntity empresaObj"),
-	@NamedQuery(name = "EmpresaEntity.buscarPorCodigo", query = "SELECT empresaObj FROM EmpresaEntity empresaObj WHERE empresaObj.codigo = :codigo") })
+		@NamedQuery(name = "EmpresaEntity.buscarPorCodigo", query = "SELECT empresaObj FROM EmpresaEntity empresaObj WHERE empresaObj.codigo = :codigo") })
 
 public class EmpresaEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	// -Empresa (codigo, nomeEmpresa, email, senha, cnpj, dataCadastro,
+	// segmento);
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Long codigo;
-	private String nomeEmpresa;
+	private String cnpj;
 	@NaturalId
 	private String email;
 	private String senha;
+
+	private String nomeEmpresa;
+	private String ramoEmpresa;
+	private String dataCadastro;
+	private String descricaoEmpresa;
 
 	public Long getCodigo() {
 		return codigo;
@@ -62,17 +70,46 @@ public class EmpresaEntity implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public String getDescricaoEmpresa() {
+		return descricaoEmpresa;
+	}
+
+	public void setDescricaoEmpresa(String descricaoEmpresa) {
+		this.descricaoEmpresa = descricaoEmpresa;
+	}
+
+	public String getRamoEmpresa() {
+		return ramoEmpresa;
+	}
+
+	public void setRamoEmpresa(String ramoEmpresa) {
+		this.ramoEmpresa = ramoEmpresa;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((nomeEmpresa == null) ? 0 : nomeEmpresa.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
 
@@ -85,6 +122,11 @@ public class EmpresaEntity implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EmpresaEntity other = (EmpresaEntity) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -95,23 +137,14 @@ public class EmpresaEntity implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (nomeEmpresa == null) {
-			if (other.nomeEmpresa != null)
-				return false;
-		} else if (!nomeEmpresa.equals(other.nomeEmpresa))
-			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "EmpresaEntity [codigo = " + codigo + ", \t nomeEmpresa=" + nomeEmpresa + ", \t email=" + email
-				+ ", \t senha=" + senha + "]";
+		return "EmpresaEntity [codigo=" + codigo + ", cnpj=" + cnpj + ", email=" + email + ", senha=" + senha
+				+ ", nomeEmpresa=" + nomeEmpresa + ", ramoEmpresa=" + ramoEmpresa + ", dataCadastro=" + dataCadastro
+				+ ", descriçãoEmpresa=" + descricaoEmpresa + "]";
 	}
 
 }

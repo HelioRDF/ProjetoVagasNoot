@@ -8,6 +8,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.junit.Test;
+
 import com.mycompany.util.FacesUtil;;
 
 /**
@@ -63,16 +65,21 @@ public class UsuarioBean {
 
 	}
 
+	@Test
 	public void carregar() {
 
 		try {
+
+			System.out.println("Entrou no IF usuários");
 
 			UsuarioDAOHibernate usuarioDAOHibernate = new UsuarioDAOHibernate();
 			listUsuarios = usuarioDAOHibernate.listar();
 
 		} catch (RuntimeException e) {
 			FacesUtil.adicionarMsgErro("Erro ao listar Usuarios");
+		} finally {
 		}
+
 	}
 
 	public UsuarioEntity getUsuarioEntity() {
