@@ -54,41 +54,38 @@
 					<h:outputText value="#{company.email}" />
 				</p:column>
 
-				<p:column headerText="CNPJ">
-					<h:outputText value="#{company.cnpj}" />
-				</p:column>
+					<p:column headerText="Opções">
 
-				<p:column headerText="Ramo">
-					<h:outputText value="#{company.ramoEmpresa}" />
-				</p:column>
-
-				<p:column headerText="Senha">
-					<h:outputText value="#{company.senha}" />
 				</p:column>
 
 
-				<!-- Informações após expandir linha -->
-				<p:rowExpansion>
-					<p:panelGrid columns="1" columnClasses="label,value"
-						style="width:size">
-						<h:outputText value="Codigo: #{company.codigo}" />
-						<h:outputText value="Data de cadastro: #{company.dataCadastro}" />
-					</p:panelGrid>
 
-					<p:separator />
-					<p:panelGrid columns="1">
-						<h:outputText value="Descrição da Empresa: " />
-						<h:inputTextarea readonly="true" rows="10" cols="90"
-							value="#{company.descricaoEmpresa}" />
-					</p:panelGrid>
+					<!-- Informações após expandir linha  ( posso precisar style="width:size")-->
+					<p:rowExpansion>
+						<p:panelGrid columns="2" columnClasses="label,value">
 
-					<p:separator />
+							<h:outputText value="Cadastrado dia: #{company.dataCadastro}" />
+							<h:outputText value="Senha: #{company.senha}" />
+
+							<h:outputText value="Segmento da empresa: #{company.ramoEmpresa}" />
+							<h:outputText value="Cnpj: #{company.cnpj}" />
+
+						</p:panelGrid>
+
+						<p:separator />
+						<p:panelGrid columns="1">
+							<h:outputText value="Descrição da Empresa: " />
+							<h:inputTextarea readonly="true" rows="10" cols="90"
+								value="#{company.descricaoEmpresa}" />
+						</p:panelGrid>
+
+						<p:separator />
+						<p:separator />
+						<p:separator />
 
 
 
-				</p:rowExpansion>
-
-
+					</p:rowExpansion>
 			</p:dataTable>
 
 

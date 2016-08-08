@@ -26,15 +26,14 @@ public class UsuarioEntity implements Serializable {
 	@Column
 	private Long codigo;
 	private String nome;
+	@NaturalId
+	private String email;
 	private String dataCadastro;
 	private String dataNascimento;
 	private String estadoCivil;
 	private String cpf;
 	private String sexo;
 	private String senha;
-
-	@NaturalId
-	private String email;
 
 	public String getNome() {
 		return nome;

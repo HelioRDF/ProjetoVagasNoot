@@ -25,19 +25,20 @@ public class EmpresaEntity implements Serializable {
 	// -Empresa (codigo, nomeEmpresa, email, senha, cnpj, dataCadastro,
 	// segmento);
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private Long codigo;
-	private String cnpj;
-	@NaturalId
-	private String email;
-	private String senha;
+    @Id
+    @GeneratedValue(strategy = GenerationType. AUTO)
+    @Column
+    private Long codigo ;
+    private String nomeEmpresa ;
+    @NaturalId
+    private String email ;
+  
+    private String cnpj;
+    private String senha ;
+    private String ramoEmpresa ;
+    private String dataCadastro ;
+    private String descricaoEmpresa ;
 
-	private String nomeEmpresa;
-	private String ramoEmpresa;
-	private String dataCadastro;
-	private String descricaoEmpresa;
 
 	public Long getCodigo() {
 		return codigo;

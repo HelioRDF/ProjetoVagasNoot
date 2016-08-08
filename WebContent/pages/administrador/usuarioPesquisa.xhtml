@@ -52,33 +52,6 @@
 					<h:outputText value="#{user.email}" />
 				</p:column>
 
-				<p:column headerText="CPF" filterBy="#{user.cpf}" width="true">
-					<h:outputText value="#{user.cpf}" />
-				</p:column>
-
-
-
-				<p:column headerText="Data de Nascimento">
-					<h:outputText value="#{user.dataNascimento}" />
-				</p:column>
-
-				<p:column headerText="Sexo" filterBy="#{user.sexo}">
-					<h:outputText value="#{user.sexo}" />
-				</p:column>
-
-
-				<p:column headerText="Estado Civil" filterBy="#{user.estadoCivil}">
-					<h:outputText value="#{user.estadoCivil}" />
-				</p:column>
-
-				<p:column headerText="Data de Cadastro">
-					<h:outputText value="#{user.dataCadastro}" />
-				</p:column>
-
-				<p:column headerText="Senha">
-					<h:outputText value="#{user.senha}" />
-				</p:column>
-
 
 				<p:column headerText="Opções">
 
@@ -86,13 +59,22 @@
 
 				<!-- Informações após expandir linha -->
 				<p:rowExpansion>
-					<p:panelGrid columns="1" columnClasses="label,value"
+					<p:panelGrid columns="2" columnClasses="label,value"
 						style="width:size">
 
-						<h:outputText value="Codigo: #{user.codigo}" />
-						<h:outputText value="Nome" />
-						<h:outputText value="#{user.nome}" />
+						<h:outputText value="Cadastrado dia: #{user.dataCadastro}" />
+						<h:outputText value="Senha: #{user.senha}" />
+						<h:outputText value="Data de Nascimento: #{user.dataNascimento}" />
+						<h:outputText value="CPF: #{user.cpf}" />
+						<h:outputText value="Estado Civil: #{user.estadoCivil}" />
+						<h:outputText value="Sexo: #{user.sexo}" />
+
+
+
 					</p:panelGrid>
+					<p:separator />
+					<p:separator />
+					<p:separator />
 				</p:rowExpansion>
 
 
