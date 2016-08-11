@@ -13,9 +13,18 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+
+<!-- Carregamento do tema prime faces -->
   
   <context-param>  
     <param-name>primefaces.THEME</param-name>  
     <param-value>omega</param-value>  
 </context-param>  
+
+<!-- Carregamento do Contexto do hibernate -->
+	 <listener>
+		<listener-class>br.com.drogaria.util.ContextListener</listener-class>
+	</listener>
+
+
 </web-app>
