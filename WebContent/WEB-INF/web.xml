@@ -21,10 +21,10 @@
     <param-value>omega</param-value>  
 </context-param>  
 
-<!-- Carregamento do Contexto do hibernate -->
-	 <listener>
+<!-- Carregamento do Contexto do hibernate, não está funcionando -->
+	<!--  <listener>
 		<listener-class>br.com.drogaria.util.ContextListener</listener-class>
 	</listener>
-
+ -->
 
 </web-app>
